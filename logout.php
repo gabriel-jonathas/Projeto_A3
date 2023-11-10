@@ -1,9 +1,11 @@
 <?php
+
 session_start();
-$_SESSION['nome'] = null;
+
+$_SESSION['logado'] = NULL;
+
 session_destroy();
 
-header("location: index.php");
-
+header('Location: index.php');
 
 ?>
