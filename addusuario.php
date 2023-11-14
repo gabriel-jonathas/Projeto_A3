@@ -4,7 +4,7 @@ session_start();
 
 include('conexao.php');
 include('funcoes.php');
-include('validarlogin');
+include('validaradmingerente.php');
 
 $nome = isset($_POST['nome']) ? $_POST['nome'] : '' ;
 $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '' ;
