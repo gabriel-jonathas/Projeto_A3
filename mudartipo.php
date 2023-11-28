@@ -9,7 +9,7 @@ $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';
 $nivel = isset($_POST['nivel']) ? $_POST['nivel'] : '';
 $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : '';
 $admin = $_SESSION['cpf'];
-date_default_timezone_get('America/São_paulo');
+date_default_timezone_set('America/Sao_paulo');
 $data = date("y-m-d H:i:s");
 
 if($nivel <> 0) {
