@@ -2,7 +2,7 @@
 
 session_start();
 
-$_SESSION['logado'] = NULL;
+$_SESSION['logado'] = false;
 
 session_destroy();
 

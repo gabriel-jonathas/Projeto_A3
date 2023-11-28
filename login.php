@@ -1,27 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="estilo.css">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Projeto A3 - Programação e Modelagem Manhã</title>
-</head>
-<body>
-	<center>
-		<h1>Login</h1>
-		<form id="form-login" action="logado.php" method="POST">
-			Login: <input type="text" name="login" required><br>
-			Senha: <input type="password" name="senha" required><br><br>
-			<input type="submit" name="entrar" value="Entrar">
-		</form>
-	</center>
-</body>
-</html>
+<?php
 
+include('conexao.php');
+include('funcoes.php');
 
+$login = isset($_POST['login']) ? $_POST['login'] : '';
+$senha = isset($_POST['senha']) ? $_POST['senha'] : '';
 
+$senhacriptografada = criptografar($senha);
 
+$select = "SELECT login, senha, nivel, cpf FROM login 
+			WHERE login = '$login' AND senha = '$senhacriptografada'";
+$query = mysqli_query($conexao, $select);
+$dados = mysqli_fetch_row($query);
 
-</form>
-</body>
-</html>
+if (isset($dados[0]) == $login && isset($dados[1]) == $senhacriptografada) {
+	session_start();
+	$_SESSION['login'] = $dados[0];
+	$_SESSION['nivel'] = $dados[2];
+	$_SESSION['cpf'] = $dados[3];
+	$_SESSION['logado'] = true;
+	header('Location: principal.php');
+} else {
+	echo '<script>alert("Usuário ou senha incorretos");
+			window.location="index.php";
+			</script>';
+}
+
+?>
